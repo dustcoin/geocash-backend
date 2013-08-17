@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Geocash</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 60px;
+      }
+
+      /* Custom container */
+      .container {
+        margin: 0 auto;
+        max-width: 1000px;
+      }
+      .container > hr {
+        margin: 20px 0;
+      }
+
+      .jumbotron {
+        margin: 80px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 60px;
+        line-height: 1;
+      }
+      .jumbotron .lead {
+        font-size: 24px;
+        line-height: 1.25;
+      }
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+
+      /* Customize the navbar links to be fill the entire space of the .navbar */
+      .navbar .navbar-inner {
+        padding: 0;
+      }
+      .navbar .nav {
+        margin: 0;
+        display: table;
+        width: 100%;
+      }
+      .navbar .nav li {
+        display: table-cell;
+        width: 1%;
+        float: none;
+      }
+      .navbar .nav li a {
+        font-weight: bold;
+        text-align: center;
+        border-left: 1px solid rgba(255,255,255,.75);
+        border-right: 1px solid rgba(0,0,0,.1);
+      }
+      .navbar .nav li:first-child a {
+        border-left: 0;
+        border-radius: 3px 0 0 3px;
+      }
+      .navbar .nav li:last-child a {
+        border-right: 0;
+        border-radius: 0 3px 3px 0;
+      }
+  
+      #stats-addr {
+        width: 300px;    
+      }
+
+    </style>
+    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/static/bootstrap/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+      <center><h1>Geocash</h1></center>
+
+      <div>
+        <center>
+          <h6>Add Location</h6>
+          <table>
+          <form action="/add" method="post">
+              <tr><th>Name</th><td><input type="text" name="name"/></td>
+              <tr><th>Lat</th><td><input type="text" width="50px" name="latitude" /></td>
+              <tr><th>Lon</th><td><input type="text" width="50px" name="longitude" /></td>
+              <tr><th>BTC Addr</th><td><input type="text" size="34" name ="btc_addr" /></td>
+              <tr><td colspan="2"><input class="btn btn-success" type="submit" value="Submit">
+          </form>
+          </table>
+        </center>
+      </div>
+
+      <div>
+       <h3>Unclaimed</h3>
+         <table class="table">
+           <tr>
+             <th>Name</th> 
+             <th>Latitude</th>
+             <th>Longitude</th>
+             <th>BTC Address</th>
+             <th>Value</th>
+           </tr>
+           {% for location in unclaimed %}
+           <tr>
+             <th>{{ location.name }}</th>     
+             <td>{{ location.latitude }}</td>
+             <td>{{ location.longitude }}</td>
+             <td>{{ location.btc_addr }}</td>
+             <td>{{ location.value }}</td>     
+           </tr>
+           {% endfor %}
+       </table> 
+      </div>
+      <div>
+       <h3>Claimed</h3>
+         <table class="table">
+           <tr>
+             <th>Name</th> 
+             <th>Latitude</th>
+             <th>Longitude</th>
+             <th>BTC Address</th>
+             <th>Value</th>
+           </tr>
+           {% for location in claimed %}
+           <tr>
+             <th>{{ location.name }}</th>     
+             <td>{{ location.latitude }}</td>
+             <td>{{ location.longitude }}</td>
+             <td>{{ location.btc_addr }}</td>
+             <td>{{ location.value }}</td>     
+           </tr>
+           {% endfor %}
+       </table> 
+      </div>
+
+      <hr>
+      <div class="footer">
+		<a href="https://twitter.com/dustcoin">Twitter</a>
+      </div>
+
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+    </script>
+  </body>
+</html>
+
