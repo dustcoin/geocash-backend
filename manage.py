@@ -28,7 +28,7 @@ def update():
         for address in addresses:
             btc_addr = address['address']
             location = Location.query.filter(Location.btc_addr == btc_addr).first()
-            location.value = 1.0 * address['final_balance'] / 100000000 
+            location.value = 1.0 * address['total_received'] / 100000000 
 
             # If any coins have been spent, then the private key was redeemed
             if address['total_sent'] > 0:

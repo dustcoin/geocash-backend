@@ -13,12 +13,17 @@ import base58
 import coind
 
 COIN = 100000000
+PAYOUT_RATE = 1.01
 
 # Config
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://pool:changeme@localhost/pool"
 app.config["DEBUG"] = True
 db = SQLAlchemy(app)
+
+# Memcached
+from werkzeug.contrib.cache import MemcachedCache
+cache = MemcachedCache(["127.0.0.1:11211"])
 
 # Logging
 import logging
