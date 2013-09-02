@@ -9,9 +9,6 @@ import time
 import string
 import json
 
-import base58
-import coind
-
 COIN = 100000000
 PAYOUT_RATE = 1.01
 
@@ -31,9 +28,6 @@ from logging import FileHandler
 file_handler = FileHandler("geocash.log")
 file_handler.setLevel(logging.DEBUG)
 app.logger.addHandler(file_handler)
-
-def is_valid_address(addr):
-    return base58.get_bcaddress_version(addr) != None
 
 def get_time():
     return int(time.mktime(datetime.datetime.now().timetuple()))

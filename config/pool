@@ -1,0 +1,24 @@
+server {
+	listen   80; ## listen for ipv4; this line is default and implied
+
+    gzip on;
+	gzip_disable "msie6";
+    gzip_min_length 1000;
+    gzip_types text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript;    
+	
+	location /static {
+		alias /var/www/pool/static;
+		expires 7d;
+	}
+    
+	location / {
+		include uwsgi_params;
+        uwsgi_pass unix:/tmp/uwsgi.sock;
+        uwsgi_param UWSGI_PYHOME /home/dust/pool;
+        uwsgi_param UWSGI_CHDIR /home/dust/pool;
+	}
+
+	error_page 404 /static/error/404.html;
+	error_page 500 502 503 504 /static/error/50x.html;
+}
+
